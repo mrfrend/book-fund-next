@@ -32,7 +32,7 @@ export async function authorizeAction(prevState: any, formData: FormData) {
     console.error("Request error:", error);
     return { message: "Произошла ошибка при авторизации", status: "error" };
   }
-  redirect("/");
+  redirect("/catalog");
 }
 
 export async function registerAction(prevState: any, formData: FormData) {
