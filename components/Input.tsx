@@ -13,7 +13,7 @@ export function Input({ icon, className, children, ...props }: InputProps) {
       {icon && <button className="absolute right-2 bg-transparent">{icon}</button>}
       <input
         className={clsx(
-          "px-6 pr-9 py-4 w-[370px] rounded-[100px] border-2 border-solid border-[#EBEAED] text-gray-600 font-medium text-[20px] outline-4 outline-mainColor",
+          "px-6 pr-9 py-4 w-[370px] rounded-[100px] border-2 border-solid border-[#EBEAED] text-gray-600 font-medium text-[20px] outline-mainColor  focus:outline-2 focus:outline",
           className
         )}
         onChange={(e) => setState(e.target.value)}

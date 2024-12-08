@@ -1,11 +1,13 @@
 import { NavBar } from "@/components/NavBar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
-      <main className="flex flex-col">
+export default function Layout({ children, modal }: { children: React.ReactNode, modal: React.ReactNode }) {
+  return (
+    <main className="flex flex-col gap-5">
+      <header>
         <NavBar />
-        {children}
-      </main>
-    );
-  }
-  
+      </header>
+      {modal}
+      {children}
+    </main>
+  );
+}

@@ -47,7 +47,7 @@ export default function Login() {
         >
           {state?.message}
         </span>
-        <Button>Зарегистрироваться</Button>
+        <Button className=" w-[260px] h-[60px] px-[10px] py-2">Зарегистрироваться</Button>
       </Form>
       <div className="mt-[105px] h-[2px] w-[370px] bg-gray-200"></div>
       <Link

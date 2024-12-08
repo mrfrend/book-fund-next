@@ -34,7 +34,7 @@ export default function Login() {
         >
           {state?.message}
         </span>
-        <Button>Войти</Button>
+        <Button className="w-[230px] h-[60px] px-[10px]">Войти</Button>
       </Form>
       <div className="mt-[105px] h-[2px] w-[370px] bg-gray-200"></div>
       <Link

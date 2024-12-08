@@ -1,4 +1,5 @@
 import { Button } from "./Button";
-import { Input } from "./Input/Input";
-import { Form } from "./Form/Form";
-export { Button, Input, Form };
+import { Input } from "./Input";
+import { Form } from "./Form";
+import { CheckboxGroup} from "./CheckboxGroup";
+export { Button, Input, Form, CheckboxGroup};
