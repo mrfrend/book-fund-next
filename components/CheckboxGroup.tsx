@@ -11,9 +11,9 @@ export function CheckboxGroup({
 }: CheckboxGroupProps) {
   return (
     <div>
-      <h2 className="text-xl font-bold text-black mb-4">{title}</h2>
+      <h2 className="text-[20px] font-bold text-black mb-4">{title}</h2>
       {checkboxes.length > 5 ? (
-        <ScrollArea className="h-[100px] w-[98%] border flex flex-col gap-[5px]">
+        <ScrollArea className="max-h-[100px] w-[98%] border flex flex-col gap-[5px]">
           {checkboxes.map((checkbox) => (
             <div key={nanoid()} className="flex items-center gap-2">
               <Checkbox
@@ -28,7 +28,7 @@ export function CheckboxGroup({
           ))}
         </ScrollArea>
       ) : (
-        <div className="h-[100px] w-[260px] flex flex-col gap-[5px]">
+        <div className="w-[260px] flex flex-col gap-[5px]">
           {checkboxes.map((checkbox) => (
             <div key={nanoid()} className="flex items-center gap-2">
               <Checkbox

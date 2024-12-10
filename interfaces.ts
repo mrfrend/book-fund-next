@@ -6,6 +6,23 @@ export interface CheckboxProps {
   id: string;
 }
 
+export interface Author {
+  id: number;
+  first_name: string;
+  last_name: string;
+  middle_name?: string;
+}
+
+interface BaseInterface {
+  id: number;
+  name: string;
+}
+
+export interface Catalog extends BaseInterface {}
+export interface Country extends BaseInterface {}
+export interface Publisher extends BaseInterface {}
+export interface Genre extends BaseInterface {}
+
 export interface CheckboxGroupProps {
   title: string;
   name: string;
@@ -24,34 +41,11 @@ export interface BookProps {
   description: string;
   country_id: number;
   publisher_id: number;
-  genres: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
-  authors: [
-    {
-      id: number;
-      first_name: string;
-      last_name: string;
-      middle_name?: string;
-    }
-  ];
-  catalogs: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
-  country: {
-    id: number;
-    name: string;
-  };
-  publisher: {
-    id: number;
-    name: string;
-  };
+  genres: Genre[];
+  authors: Author[];
+  catalogs: Catalog[];
+  country: Country;
+  publisher: Publisher;
 }
 
 export interface BookCardProps extends HTMLAttributes<HTMLDivElement> {

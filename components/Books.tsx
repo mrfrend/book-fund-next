@@ -3,7 +3,6 @@ import { BookCard } from "./BookCard";
 import axios from "axios";
 export async function Books() {
   const { data } = await axios.get("http://localhost:8000/books");
-  console.log(data);
   return (
     <>
       {data.map((book: BookProps) => (
