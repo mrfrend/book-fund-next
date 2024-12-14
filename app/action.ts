@@ -32,7 +32,7 @@ export async function authorizeAction(prevState: any, formData: FormData) {
     console.error("Request error:", error);
     return { message: "Произошла ошибка при авторизации", status: "error" };
   }
-  
+
   redirect("/catalog");
 }
 
@@ -70,24 +70,53 @@ export async function logout() {
   //   withCredentials: true,
   // });
   const cookieStore = await cookies();
-  cookieStore.delete('access_token')
+  cookieStore.delete("access_token");
   console.log(cookieStore.get("access_token"));
   redirect("/login");
 }
 
-export async function getAuthors() {
-  return await axios.get("http://localhost:8000/authors");
-}
-export async function addAuthor(prevState: any,formData: FormData) {
+export async function addAuthor(e: React.FormEvent, formData: FormData) {
+  e.preventDefault();
   const formValues = Object.fromEntries(formData.entries());
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access_token")?.value;
   console.log(formValues);
-
-
-  //   await fetch("http://localhost:8000/authors", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify()
-  // }
+  try{
+    await fetch("http://localhost:8000/authors", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+      body: JSON.stringify({
+        first_name: formValues.firstName,
+        last_name: formValues.lastName,
+        middle_name: formValues.middleName,
+      }),
+    });
+  } catch(error) {
+    console.error(error);
+  }
+  redirect("/admin/authors");
+  
 }
+
+export async function deleteAuthor(formData: FormData) {
+  const id = formData.get("authorId");
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access_token")?.value;
+  try {
+    await fetch(`http://localhost:8000/authors/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `${token}`,
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+  redirect("/admin/authors");
+}
+
