@@ -24,7 +24,7 @@ export function BookCardModal({ book }: BookCardProps) {
           </DialogTitle>
           <p className="text-[14px] text-mainColor">
             {book.authors
-              .map(
+              ?.map(
                 (author) =>
                   `${author.first_name.slice(0, 1)}. ${
                     author.middle_name?.slice(0, 1) ?? ""
@@ -41,14 +41,14 @@ export function BookCardModal({ book }: BookCardProps) {
           </p>
           <p>
             Издательство:{" "}
-            <span className="text-black">{book.publisher.name}</span>
+            <span className="text-black">{book.publisher?.name}</span>
           </p>
           <p>
             Количество страниц:{" "}
             <span className="text-black">{book.page_amount}</span>
           </p>
           <p>
-            Страна: <span className="text-black">{book.country.name}</span>
+            Страна: <span className="text-black">{book.country?.name}</span>
           </p>
           <p>
             Год создания:{" "}
@@ -61,13 +61,17 @@ export function BookCardModal({ book }: BookCardProps) {
           <p>
             Жанры:{" "}
             <span className="text-black">
-              {book.genres.map((genre) => genre.name).join(", ")}
+              {book.genres
+                ?.map((genre) => genre.name)
+                .join(", ")}
             </span>
           </p>
           <p>
             Каталоги:{" "}
             <span className="text-black">
-              {book.catalogs.map((catalog) => catalog.name).join(", ")}
+              {book.catalogs
+                ?.map((catalog) => catalog.name)
+                .join(", ")}
             </span>
           </p>
           <p>

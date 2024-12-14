@@ -6,31 +6,7 @@ import { Suspense } from "react";
 import { formateDateToCheckBoxes } from "@/lib/utils";
 import { BooksSkeleton } from "@/components/BooksSkeleton";
 import axios from "axios";
-const example: CheckboxGroupProps[] = [
-  {
-    title: "Каталоги",
-    name: "categories",
-    checkboxes: [
-      { value: "1", labelText: "Русская классика", id: "russian-classic" },
-      { value: "2", labelText: "Литература", id: "literature" },
-      { value: "3", labelText: "Философия", id: "philosophy" },
-      { value: "4", labelText: "История", id: "history" },
-      { value: "5", labelText: "Политика", id: "politics" },
-      { value: "6", labelText: "История", id: "history" },
-    ],
-    checkboxStyle: "border-thirdColor border-4",
-  },
-  {
-    title: "Жанры",
-    name: "genres",
-    checkboxes: [
-      { value: "1", labelText: "Русская классика", id: "russian-classic" },
-      { value: "2", labelText: "Литература", id: "literature" },
-      { value: "3", labelText: "Философия", id: "philosophy" },
-      { value: "4", labelText: "История", id: "history" },
-    ],
-  },
-];
+
 export default async function Catalog() {
   const [catalogs, authors, genres, publishers] = await Promise.all([
     axios.get("http://localhost:8000/catalogs"),

@@ -6,8 +6,7 @@ import Link from "next/link";
 export function BookCard({ book }: BookCardProps) {
   return (
     <div
-      className="w-[800px] py-[10px] pl-[20px] pr-[10px] bg-white rounded-[40px] flex items-start gap-[15px]"
-      key={nanoid()}
+      className="max-w-[800px] w-full py-[10px] pl-[20px] pr-[10px] bg-white rounded-[40px] flex items-start gap-[15px]"
     >
       <Image
         src={`http://localhost:8000/books/image/${book.id}`}
@@ -21,7 +20,7 @@ export function BookCard({ book }: BookCardProps) {
           <h3 className="text-[18px] mb-[5px] text-black">{book.title}</h3>
           <p className="text-[14px] text-mainColor">
             {book.authors
-              .map(
+              ?.map(
                 (author) =>
                   `${author.first_name.slice(0, 1)}. ${
                     author.middle_name?.slice(0, 1) ?? ""
@@ -36,7 +35,7 @@ export function BookCard({ book }: BookCardProps) {
             Количество экземпляров: {book.quantity}
           </p>
           <p className="text-[14px] text-mainColor">
-            Издательство: {book.publisher.name}
+            Издательство: {book.publisher?.name}
           </p>
         </footer>
         <Link href={`/book/${book.id}`}>

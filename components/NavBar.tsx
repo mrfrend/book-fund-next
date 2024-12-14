@@ -7,10 +7,10 @@ export function NavBar(props: NavBarProps) {
     <nav className="h-[45px] px-4 pt-3" {...props}>
       <ul className="flex justify-center items-center gap-8 mx-auto text-white text-xl font-medium">
         <li>
-          <Link href="/desired-list">Желаемое</Link>
+          <Link className="hover:text-thirdColor" href="/desired-list">Желаемое</Link>
         </li>
         <li>
-          <Link href="/personal-account">Личный кабинет</Link>
+          <Link className="hover:text-thirdColor" href="/personal-account">Личный кабинет</Link>
         </li>
         <li>
           <Input

@@ -5,6 +5,7 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   variable: "--font-dm-sans",
 });
+import Provider from "@/components/Provider";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -12,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className={dmSans.className} lang="en">
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
