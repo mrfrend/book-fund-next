@@ -75,8 +75,7 @@ export async function logout() {
   redirect("/login");
 }
 
-export async function addAuthor(e: React.FormEvent, formData: FormData) {
-  e.preventDefault();
+export async function addAuthor(formData: FormData) {
   const formValues = Object.fromEntries(formData.entries());
   const cookieStore = await cookies();
   const token = cookieStore.get("access_token")?.value;

@@ -4,21 +4,23 @@ import { columns } from "./columns";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button, Input } from "@/components/index";
 import { ActionForm } from "@/components/ActionForm";
-import { addAuthor } from "@/app/action";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { addAuthor } from "@/app/action";
 
 async function fetchData() {
-  const response = await fetch("http://localhost:8000/authors/");
-  return await response.json();
+  const { data } = await axios.get(process.env.NEXT_PUBLIC_API + "/authors/");
+  return data;
 }
 export default function Page() {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     fetchData().then((data) => {
       setData(data);
     });
-  }, []);
+  }, [data]);
+
   return (
     <>
       <h1 className="text-[24px] text-center">Авторы</h1>
@@ -29,7 +31,12 @@ export default function Page() {
         <ActionForm
           title="Добавить автора"
           className="flex flex-col justify-center items-center gap-4"
-          action={addAuthor}
+          action={(e) => {
+            addAuthor(e);
+            fetchData().then((data) => {
+              setData(data);
+            });
+          }}
         >
           <Input
             name="firstName"
