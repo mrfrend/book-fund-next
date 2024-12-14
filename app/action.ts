@@ -74,3 +74,20 @@ export async function logout() {
   console.log(cookieStore.get("access_token"));
   redirect("/login");
 }
+
+export async function getAuthors() {
+  return await axios.get("http://localhost:8000/authors");
+}
+export async function addAuthor(prevState: any,formData: FormData) {
+  const formValues = Object.fromEntries(formData.entries());
+  console.log(formValues);
+
+
+  //   await fetch("http://localhost:8000/authors", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify()
+  // }
+}

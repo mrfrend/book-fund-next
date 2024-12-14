@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Button } from "@/components/index";
 export default function Admin() {
   return (
-    <div>
+    <>
       <h1>Admin</h1>
 
-      <ul className="flex gap-[10px] justify-center">
+      <ul className="flex gap-[10px] justify-around">
         <li>
           <Link href={'/admin/authors'}>
             <Button className="px-[10px]">Авторы</Button>
@@ -27,6 +27,6 @@ export default function Admin() {
           </Link>
         </li>
       </ul>
-    </div>
+    </>
   );
 }
