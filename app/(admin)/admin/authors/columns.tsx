@@ -2,24 +2,18 @@
 import { Author } from "@/interfaces";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 
-
-export const columns: ColumnDef<Author>[] = [
-  {
-    accessorKey: "id",
+const columnHelper = createColumnHelper<Author>();
+export const columns = [
+  columnHelper.accessor("id", {
     header: "ID",
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "first_name",
+  }),
+  columnHelper.accessor("first_name", {
     header: "Имя",
-  },
-  {
-    accessorKey: "last_name",
+  }),
+  columnHelper.accessor("last_name", {
     header: "Фамилия",
-  },
-  {
-    accessorKey: "middle_name",
+  }),
+  columnHelper.accessor("middle_name", {
     header: "Отчество",
-  },
+  }),
 ];

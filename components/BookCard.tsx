@@ -5,11 +5,9 @@ import { Button } from "./Button";
 import Link from "next/link";
 export function BookCard({ book }: BookCardProps) {
   return (
-    <div
-      className="max-w-[800px] w-full py-[10px] pl-[20px] pr-[10px] bg-white rounded-[40px] flex items-start gap-[15px]"
-    >
+    <div className="max-w-[800px] w-full py-[10px] pl-[20px] pr-[10px] bg-white rounded-[40px] flex items-start gap-[15px]">
       <Image
-        src={`http://localhost:8000/books/image/${book.id}`}
+        src={`${process.env.NEXT_PUBLIC_API}/books/image/${book.id}`}
         className="rounded-[10px] border-4 border-thirdColor flex-grow"
         alt={book.title}
         width={140}

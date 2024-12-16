@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react";
 
+import { CellContext } from "@tanstack/react-table";
 export interface CheckboxProps {
   value: string;
   labelText: string;
@@ -48,6 +49,10 @@ export interface BookProps {
   publisher: Publisher;
 }
 
+export type BookTableProps = Omit<BookProps, 'genres' | 'authors' | 'catalogs' | 'country' | 'publisher' | 'description'>;
 export interface BookCardProps extends HTMLAttributes<HTMLDivElement> {
   book: BookProps;
 }
+
+export interface TableCellProps<TData, TValue>
+  extends CellContext<TData, TValue> {}

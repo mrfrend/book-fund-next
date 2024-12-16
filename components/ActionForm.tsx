@@ -2,6 +2,7 @@ interface ActionFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   title: string
 }
 import clsx from "clsx";
+import { FormEvent } from "react";
 export function ActionForm({
   action,
   children,

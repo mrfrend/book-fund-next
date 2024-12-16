@@ -1,21 +1,21 @@
 import { ScrollTable } from "@/components/ScrollTable";
-import { Genre } from "@/interfaces";
+import { Publisher } from "@/interfaces";
 import { columns } from "./columns";
 import axios from "axios";
 
 async function fetchData() {
-  const { data } = await axios.get(process.env.NEXT_PUBLIC_API + "/genres");
+  const { data } = await axios.get(process.env.NEXT_PUBLIC_API + "/publishers");
   return data;
 }
 export default async function Page() {
   const data = await fetchData();
   return (
-    <ScrollTable<Genre>
-      title="Жанры"
+    <ScrollTable<Publisher>
+      title="Издатели"
       columns={columns}
       data={data}
-      word="жанр"
-      linkPart="genres"
+      word="издателя"
+      linkPart="publishers"
     />
   );
 }
