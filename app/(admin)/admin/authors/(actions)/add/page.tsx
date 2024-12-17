@@ -11,7 +11,7 @@ const initialState = {
   status: "",
 };
 export default function Page() {
-  const [state, formAction] = useActionState(addAuthor, initialState);
+  const [state, formAction, isPending] = useActionState(addAuthor, initialState);
 
   return (
     <ActionForm action={formAction} title="Добавить автора">
@@ -35,14 +35,18 @@ export default function Page() {
         placeholder="Отчество автора"
         maxLength={50}
       />
-      <span
-        className={clsx({
-          "text-red-500": state?.status === "error",
-          "text-green-500": state?.status === "success",
-        })}
-      >
-        {state?.message}
-      </span>
+      {isPending ? (
+        <p>Ожидайте...</p>
+      ) : (
+        <span
+          className={clsx({
+            "text-red-500": state?.status === "error",
+            "text-green-500": state?.status === "success",
+          })}
+        >
+          {state?.message}
+        </span>
+      )}
       <Button>Подтвердить</Button>
     </ActionForm>
   );

@@ -2,7 +2,7 @@
 import { ActionForm } from "@/components/ActionForm";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/button";
-import { updateGenre } from "@/app/action";
+import { addCountry } from "@/app/action";
 import { useActionState } from "react";
 import clsx from "clsx";
 
@@ -11,22 +11,17 @@ const initialState = {
   status: "",
 };
 export default function Page() {
-  const [state, formAction, isPending] = useActionState(updateGenre, initialState);
+  const [state, formAction, isPending] = useActionState(
+    addCountry,
+    initialState
+  );
 
   return (
-    <ActionForm action={formAction} title="Обновить жанр">
-      <Input
-        name="genreId"
-        type="number"
-        min={1}
-        className="py-[10px]"
-        placeholder="Введите ID жанра"
-        required
-      />
+    <ActionForm action={formAction} title="Добавить страну">
       <Input
         name="name"
         className="py-[10px]"
-        placeholder="Название жанра"
+        placeholder="Название страны"
         maxLength={50}
         required
       />
@@ -42,6 +37,7 @@ export default function Page() {
           {state?.message}
         </span>
       )}
+
       <Button>Подтвердить</Button>
     </ActionForm>
   );

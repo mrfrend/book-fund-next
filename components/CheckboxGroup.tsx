@@ -31,6 +31,7 @@ export function CheckboxGroup({
                 className={clsx(checkboxStyle)}
                 value={checkbox.value}
                 name={name}
+                checked={isChecked.includes(checkbox.value)}
                 id={checkbox.id}
                 key={nanoid()}
                 setGroupState={setIsChecked}
@@ -49,6 +50,7 @@ export function CheckboxGroup({
                 name={name}
                 id={checkbox.id}
                 key={nanoid()}
+                checked={isChecked.includes(checkbox.value)}
                 setGroupState={setIsChecked}
               />
               <label className="" htmlFor={checkbox.id}>

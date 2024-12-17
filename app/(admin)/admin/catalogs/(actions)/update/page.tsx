@@ -11,7 +11,7 @@ const initialState = {
   status: "",
 };
 export default function Page() {
-  const [state, formAction] = useActionState(updateCatalog, initialState);
+  const [state, formAction, isPending] = useActionState(updateCatalog, initialState);
 
   return (
     <ActionForm action={formAction} title="Обновить каталог">
@@ -30,14 +30,18 @@ export default function Page() {
         maxLength={50}
         required
       />
-      <span
-        className={clsx({
-          "text-red-500": state?.status === "error",
-          "text-green-500": state?.status === "success",
-        })}
-      >
-        {state?.message}
-      </span>
+      {isPending ? (
+        <p>Ожидайте...</p>
+      ) : (
+        <span
+          className={clsx({
+            "text-red-500": state?.status === "error",
+            "text-green-500": state?.status === "success",
+          })}
+        >
+          {state?.message}
+        </span>
+      )}
       <Button>Подтвердить</Button>
     </ActionForm>
   );

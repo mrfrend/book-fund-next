@@ -11,7 +11,7 @@ const initialState = {
   status: "",
 };
 export default function Page() {
-  const [state, formAction] = useActionState(deleteCatalog, initialState);
+  const [state, formAction, isPending] = useActionState(deleteCatalog, initialState);
 
   return (
     <ActionForm action={formAction} title="Удаление каталога">
@@ -23,9 +23,18 @@ export default function Page() {
         placeholder="Введите ID каталога"
         required
       />
-      <span className={clsx({ "text-red-500": state?.status === "error", "text-green-500": state?.status === "success" })}>
-        {state?.message}
-      </span>
+      {isPending ? (
+        <p>Ожидайте...</p>
+      ) : (
+        <span
+          className={clsx({
+            "text-red-500": state?.status === "error",
+            "text-green-500": state?.status === "success",
+          })}
+        >
+          {state?.message}
+        </span>
+      )}
       <Button>Подтвердить</Button>
     </ActionForm>
   );

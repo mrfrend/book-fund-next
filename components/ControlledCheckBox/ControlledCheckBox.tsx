@@ -13,7 +13,6 @@ export function ControlledCheckBox({
   setGroupState,
   ...props
 }: ControlledCheckBoxProps) {
-  const [checked, setChecked] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGroupState((prev) =>
@@ -21,15 +20,14 @@ export function ControlledCheckBox({
         ? prev.filter((item) => item !== e.target.value)
         : [...prev, e.target.value]
     );
-    setChecked((prev) => !prev);
   };
 
   return (
     <input
       type="checkbox"
+      checked={props.checked}
       className={clsx(styles.checkbox_appearance, className)}
       {...props}
-      checked={checked}
       onChange={handleChange}
     />
   );

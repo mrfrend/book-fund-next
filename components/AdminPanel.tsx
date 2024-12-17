@@ -34,6 +34,11 @@ export function AdminPanel() {
             <Button className="px-[10px]">Издатели</Button>
           </Link>
         </li>
+        <li>
+          <Link href={"/admin/countries"}>
+            <Button className="px-[10px]">Страны</Button>
+          </Link>
+        </li>
       </ul>
     </>
   );

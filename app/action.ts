@@ -434,3 +434,68 @@ export async function updatePublisher(prevState: any, formData: FormData) {
     return { message: "Ошибка при обновлении издательства", status: "error" };
   }
 }
+
+export async function addCountry(prevState: any, formData: FormData) {
+  const name = formData.get("name");
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access_token")?.value;
+  try {
+    await axios.post(
+      process.env.NEXT_PUBLIC_API + "/countries",
+      { name: name },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    return { message: "Ошибка при добавлении страны", status: "error" };
+  }
+  revalidatePath("/admin/countries");
+  return { message: "Страна успешно добавлена", status: "success" };
+}
+
+export async function deleteCountry(prevState: any, formData: FormData) {
+  const id = formData.get("countryId");
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access_token")?.value;
+  try {
+    await axios.delete(process.env.NEXT_PUBLIC_API + `/countries/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    });
+    revalidatePath("/admin/countries");
+    return { message: "Страна успешно удалена", status: "success" };
+  } catch (error) {
+    console.error(error);
+    return { message: "Ошибка при удалении страны", status: "error" };
+  }
+}
+
+export async function updateCountry(prevState: any, formData: FormData) {
+  const token = (await cookies()).get("access_token")?.value;
+  const id = formData.get("countryId");
+  formData.delete("countryId");
+
+  try {
+    await axios.patch(
+      process.env.NEXT_PUBLIC_API + `/countries/${id}`,
+      { name: formData.get("name") },
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+    revalidatePath("/admin/countries");
+    return { message: "Страна успешно обновлена", status: "success" };
+  } catch (error) {
+    console.error(error);
+    return { message: "Ошибка при обновлении страны", status: "error" };
+  }
+}

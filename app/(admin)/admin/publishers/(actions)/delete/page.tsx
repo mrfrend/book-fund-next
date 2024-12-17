@@ -11,7 +11,7 @@ const initialState = {
   status: "",
 };
 export default function Page() {
-  const [state, formAction] = useActionState(deletePublisher, initialState);
+  const [state, formAction, isPending] = useActionState(deletePublisher, initialState);
 
   return (
     <ActionForm action={formAction} title="Удаление издательства">
@@ -23,9 +23,18 @@ export default function Page() {
         placeholder="Введите ID издательства"
         required
       />
-      <span className={clsx({ "text-red-500": state?.status === "error", "text-green-500": state?.status === "success" })}>
-        {state?.message}
-      </span>
+      {isPending ? (
+        <p>Ожидайте...</p>
+      ) : (
+        <span
+          className={clsx({
+            "text-red-500": state?.status === "error",
+            "text-green-500": state?.status === "success",
+          })}
+        >
+          {state?.message}
+        </span>
+      )}
       <Button>Подтвердить</Button>
     </ActionForm>
   );
