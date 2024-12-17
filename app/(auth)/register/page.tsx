@@ -10,8 +10,8 @@ const initialState = {
   message: "",
   status: "",
 };
-export default function Login() {
-  const [state, formAction] = useActionState(registerAction, initialState);
+export default function Register() {
+  const [state, formAction, isPending] = useActionState(registerAction, initialState);
   return (
     <section className={styles.container}>
       <h1 className="text-[42px] mt-[80px] text-thirdColor font-bold -tracking-[0.4px] text-center mb-10">
@@ -39,14 +39,18 @@ export default function Login() {
           required
           autoComplete="off"
         />
+        {isPending ? (
+        <p>Ожидайте...</p>
+      ) : (
         <span
-          className={clsx("text-[14px] font-medium", {
-            "text-green-600": state?.status === "success",
-            "text-red-600": state?.status === "error",
+          className={clsx({
+            "text-red-500": state?.status === "error",
+            "text-green-500": state?.status === "success",
           })}
         >
           {state?.message}
         </span>
+      )}
         <Button className=" w-[260px] h-[60px] px-[10px] py-2">Зарегистрироваться</Button>
       </Form>
       <div className="mt-[105px] h-[2px] w-[370px] bg-gray-200"></div>
