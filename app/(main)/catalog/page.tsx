@@ -9,10 +9,10 @@ import axios from "axios";
 
 export default async function Catalog() {
   const [catalogs, authors, genres, publishers] = await Promise.all([
-    axios.get("http://localhost:8000/catalogs"),
-    axios.get("http://localhost:8000/authors"),
-    axios.get("http://localhost:8000/genres"),
-    axios.get("http://localhost:8000/publishers"),
+    axios.get(process.env.NEXT_PUBLIC_API + "/catalogs"),
+    axios.get(process.env.NEXT_PUBLIC_API + "/authors"),
+    axios.get(process.env.NEXT_PUBLIC_API + "/genres"),
+    axios.get(process.env.NEXT_PUBLIC_API + "/publishers"),
   ]);
 
   console.log(publishers.data);
