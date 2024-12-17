@@ -1,0 +1,24 @@
+.checkbox_appearance {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    background-color: #fff
+}
+
+.checkbox_appearance:checked {
+    background-color: var(--thirdColor);
+}
+
+.checkbox_appearance:checked::before {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
