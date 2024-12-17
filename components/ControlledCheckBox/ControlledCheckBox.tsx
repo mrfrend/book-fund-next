@@ -16,12 +16,12 @@ export function ControlledCheckBox({
   const [checked, setChecked] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked((prev) => !prev);
     setGroupState((prev) =>
       prev.includes(e.target.value)
         ? prev.filter((item) => item !== e.target.value)
         : [...prev, e.target.value]
     );
+    setChecked((prev) => !prev);
   };
 
   return (
